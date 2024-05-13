@@ -1,15 +1,17 @@
-const binarySearchIterative = (arr, target) => {
-  let left = 0;
-  let right = arr.length - 1;
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    if (arr[mid] === target) {
-      return mid;
-    } else if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+function combinationSum3(k, n) {
+  const result = [];
+  backtrack([], 1, k, n);
+  return result;
+  function backtrack(combination, start, k, n) {
+    if (n === 0 && k === 0) {
+      result.push([...combination]);
+      return;
+    }
+    if (n < 0 || k === 0) return;
+    for (let i = start; i <= 9; i++) {
+      combination.push(i);
+      backtrack(combination, i + 1, k - 1, n - i);
+      combination.pop();
     }
   }
-  return -1;
-};
+}
